@@ -45,21 +45,31 @@ function App() {
     formData.append("resume", file);
 
     try {
-      setLoading(true);
-       const res = await axios.post(
+  setLoading(true);
+
+  console.log("Calling API...");
+
+  const res = await axios.post(
     "https://resume-analyzer-8jal.onrender.com/analyze",
     formData
   );
 
-      const parsed = parseResult(res.data.result);
-      setResult(parsed);
+  console.log("RESPONSE 👉", res.data);
 
-    } catch (err) {
-      console.error(err);
-      alert("Error connecting to backend");
-    } finally {
-      setLoading(false);
-    }
+  if (res.data.error) {
+    alert(res.data.error.message);
+    return;
+  }
+
+  const parsed = parseResult(res.data.result);
+  setResult(parsed);
+
+} catch (err) {
+  console.error("ERROR 👉", err);
+  alert("Error connecting to backend");
+} finally {
+  setLoading(false);
+}
   };
 
   return (

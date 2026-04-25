@@ -1,4 +1,4 @@
-//require("dotenv").config();
+require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
@@ -17,10 +17,7 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 const app = express();
-app.use(cors({
-  origin: "*"
-}));
-
+app.use(cors());
 // 📁 Upload setup
 const upload = multer({ dest: "uploads/" });
 
