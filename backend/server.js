@@ -1,11 +1,17 @@
-require("dotenv").config();
+//require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
 const multer = require("multer");
 const fs = require("fs");
 const pdfParse = require("pdf-parse");
+const apiKey = process.env.GEMINI_API_KEY;
 
+if (!apiKey) {
+  console.error("API KEY NOT FOUND ❌");
+} else {
+  console.log("API KEY LOADED ✅");
+}
 // fetch (for Node)
 const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
