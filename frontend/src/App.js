@@ -46,7 +46,10 @@ function App() {
 
     try {
       setLoading(true);
-      const res = await axios.post("https://your-app.onrender.com/analyzee", formData);
+       const res = await axios.post(
+    "https://resume-analyzer-8jal.onrender.com/analyze",
+    formData
+  );
 
       const parsed = parseResult(res.data.result);
       setResult(parsed);
